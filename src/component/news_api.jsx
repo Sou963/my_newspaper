@@ -1,27 +1,28 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Container, Row, Col } from "react-bootstrap";
-import NewsCard from "./newscard.jsx";
+import NewsCard from "./newscard";
+
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 const NewsList = () => {
   const [news, setNews] = useState([]);
 
   useEffect(() => {
     axios
-      .get("https://my-news-backend-466li9rku-sourav-bosus-projects-592bdce6.vercel.app/api/news")
+      .get(`https://newsapi.org/v2/everything?q=bangladesh&apiKey=${API_KEY}`)
       .then((res) => {
         setNews(res.data.articles);
+        localStorage.setItem("newsData", JSON.stringify(res.data.articles));
       })
-      .catch((err) => console.error(err));
+      .catch((err) => console.log(err));
   }, []);
 
   return (
     <Container className="mt-4">
       <Row>
-        {news.length === 0 && <p>Loading news...</p>}
-
-        {news.map((item, index) => (
-          <Col md={4} key={index} className="mb-3">
+        {news?.map((item, index) => (
+          <Col md={4} key={index}>
             <NewsCard news={item} />
           </Col>
         ))}
