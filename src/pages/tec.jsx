@@ -10,7 +10,7 @@ const Technology = () => {
   useEffect(() => {
     axios
       .get(
-        `https://newsapi.org/v2/everything?q=technology+bangladesh&apiKey=${API_KEY}`
+        `https://newsapi.org/v2/top-headlines?category=technology&country=us&apiKey=${API_KEY}`
       )
       .then((res) => {
         setNews(res.data.articles);

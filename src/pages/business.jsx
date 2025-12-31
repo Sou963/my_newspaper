@@ -11,7 +11,7 @@ const Business = () => {
   useEffect(() => {
     axios
       .get(
-        `https://newsapi.org/v2/everything?q=business+bangladesh&apiKey=${API_KEY}`
+        `https://newsapi.org/v2/top-headlines?category=business&country=us&apiKey=${API_KEY}`
       )
       .then((res) => {
         setNews(res.data.articles);

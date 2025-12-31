@@ -11,7 +11,7 @@ const Sports = () => {
   useEffect(() => {
     axios
       .get(
-        `https://newsapi.org/v2/everything?q=sports+bangladesh&apiKey=${API_KEY}`
+        `https://newsapi.org/v2/everything?q=bangladesh sports&apiKey=${API_KEY}`
       )
       .then((res) => {
         setNews(res.data.articles);
